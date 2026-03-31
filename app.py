@@ -242,8 +242,8 @@ def run_video_segmentation(source_vid, text_query, frame_limit, time_limit):
         return None, f"Error during video processing: {str(e)}"
 
 custom_css="""
-#col-container { margin: 0 auto; max-width: 1100px; }
-#main-title h1 { font-size: 2.1em !important; }
+#col-container { margin: 0 auto; max-width: 1200px; }
+#main-title h1 { font-size: 2.2em !important; }
 """
 
 with gr.Blocks() as demo:
@@ -341,4 +341,4 @@ with gr.Blocks() as demo:
                 )
 
 if __name__ == "__main__":
-    demo.launch(css=custom_css, theme="allenai/gradio-theme", ssr_mode=False, mcp_server=True, show_error=True)
+    demo.launch(css=custom_css, theme=gr.themes.Soft(), ssr_mode=False, mcp_server=True, show_error=True)
