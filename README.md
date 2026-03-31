@@ -2,8 +2,14 @@
 
 **SAM3 Image Segmentation** is a user-friendly web application built with Gradio that leverages the Segment Anything Model 3 (SAM3) from Meta AI to perform zero-shot instance segmentation on images using natural language text prompts. Upload an image, provide a prompt like "cat" or "blue taxi," and the app will automatically detect and highlight matching objects with confidence scores. This app demonstrates SAM3's capabilities for tasks like object detection, semantic segmentation, and interactive editing, all powered by a custom steel-blue themed interface for a sleek user experience.
 
-<img width="1541" height="773" alt="Screenshot 2025-11-22 at 11-59-20 SAM3 Image Segmentation - a Hugging Face Space by prithivMLmods" src="https://github.com/user-attachments/assets/8ae183ac-f21d-44a0-a454-306429ade2fe" />
-<img width="1482" height="770" alt="Screenshot 2025-11-22 at 11-59-43 SAM3 Image Segmentation - a Hugging Face Space by prithivMLmods" src="https://github.com/user-attachments/assets/9e4e9811-43a0-4c83-a256-61d7b434a525" />
+---
+
+<img width="1920" height="1206" alt="Screenshot 2026-03-31 at 23-14-07 SAM3 Demo - a Hugging Face Space by prithivMLmods" src="https://github.com/user-attachments/assets/9f4bd449-6080-4a82-8a99-e7b7c330811e" />
+<img width="1920" height="1257" alt="Screenshot 2026-03-31 at 23-15-24 SAM3 Demo - a Hugging Face Space by prithivMLmods" src="https://github.com/user-attachments/assets/c9e11a38-51f4-45b6-a5ad-ca4aaae94878" />
+
+https://github.com/user-attachments/assets/c6a29205-60ff-4522-b147-f76e2ee53d8b
+
+---
 
 ### Key Features
 - **Text-Prompted Segmentation**: Segment objects based on descriptive text (e.g., "player in white", "black cat").
