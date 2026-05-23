@@ -66,6 +66,10 @@ pip install -r requirements.txt
 * **macOS / Linux:** `curl -LsSf [https://astral.sh/uv/install.sh](https://astral.sh/uv/install.sh) | sh`
 * **Windows:** `powershell -c "irm [https://astral.sh/uv/install.ps1](https://astral.sh/uv/install.ps1) | iex"`
 
+    **[or]**
+
+`pip install uv`
+
 **Step 2 — Clone the repository**
 
 ```bash
