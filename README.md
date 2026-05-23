@@ -2,6 +2,10 @@
 
 SAM3: Segment Anything Model 3 is an experimental, multi-functional computer vision application that provides a unified interface for text-conditioned and click-interactive segmentation. Built around Meta's advanced `facebook/sam3` multi-model architecture, this application seamlessly features separate pipelines optimized for text-to-image segmentation, multi-frame video propagation, and high-speed, point-cumulative image tracking. The suite leverages specialized model variants (`Sam3Model`, `Sam3VideoModel`, and `Sam3TrackerModel`) to support highly precise masks over custom objects, bounding boxes, or temporal frame shifts. Fully GPU-accelerated and wrapped in a web workspace with a stylized Citrus theme, SAM3 serves as an advanced sandbox for researchers and developers deploying production-grade, state-of-the-art pixel intelligence workflows.
 
+| Demo 1 | Demo 2 | Demo 3 |
+|---|---|---|
+| <img src="https://github.com/user-attachments/assets/5cdfe8da-41ff-46d1-af8c-9ceb1c932bf3" width="100%"> | <img src="https://github.com/user-attachments/assets/7412da70-6c12-4b70-a168-5380fb13b5bf" width="100%"> | <img src="https://github.com/user-attachments/assets/3ba0b2d4-30b1-47c2-bb54-d48c24c8e9eb" width="100%"> |
+
 ### **Key Features**
 
 * **Text-Conditional Image Segmentation:** Instantly isolates target objects inside static images by matching custom queries (e.g., *"cat"*, *"face"*, *"car wheel"*) against SAM3 instance maps, complete with custom threshold masking.
