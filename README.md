@@ -1,106 +1,119 @@
-# **SAM3 Image Segmentation**
+# **SAM3: Segment Anything Model 3**
 
-**SAM3 Image Segmentation** is a user-friendly web application built with Gradio that leverages the Segment Anything Model 3 (SAM3) from Meta AI to perform zero-shot instance segmentation on images using natural language text prompts. Upload an image, provide a prompt like "cat" or "blue taxi," and the app will automatically detect and highlight matching objects with confidence scores. This app demonstrates SAM3's capabilities for tasks like object detection, semantic segmentation, and interactive editing, all powered by a custom steel-blue themed interface for a sleek user experience.
+SAM3: Segment Anything Model 3 is an experimental, multi-functional computer vision application that provides a unified interface for text-conditioned and click-interactive segmentation. Built around Meta's advanced `facebook/sam3` multi-model architecture, this application seamlessly features separate pipelines optimized for text-to-image segmentation, multi-frame video propagation, and high-speed, point-cumulative image tracking. The suite leverages specialized model variants (`Sam3Model`, `Sam3VideoModel`, and `Sam3TrackerModel`) to support highly precise masks over custom objects, bounding boxes, or temporal frame shifts. Fully GPU-accelerated and wrapped in a web workspace with a stylized Citrus theme, SAM3 serves as an advanced sandbox for researchers and developers deploying production-grade, state-of-the-art pixel intelligence workflows.
 
----
+### **Key Features**
 
-<img width="1920" height="1206" alt="Screenshot 2026-03-31 at 23-14-07 SAM3 Demo - a Hugging Face Space by prithivMLmods" src="https://github.com/user-attachments/assets/9f4bd449-6080-4a82-8a99-e7b7c330811e" />
-<img width="1920" height="1257" alt="Screenshot 2026-03-31 at 23-15-24 SAM3 Demo - a Hugging Face Space by prithivMLmods" src="https://github.com/user-attachments/assets/c9e11a38-51f4-45b6-a5ad-ca4aaae94878" />
+* **Text-Conditional Image Segmentation:** Instantly isolates target objects inside static images by matching custom queries (e.g., *"cat"*, *"face"*, *"car wheel"*) against SAM3 instance maps, complete with custom threshold masking.
+* **Temporal Video Object Propagation:** Tracks and cuts targeted entities dynamically across successive video frames. By incorporating bfloat16 numerical computation, the video pipeline scales smoothly inside active VRAM constraints.
+* **Interactive Point Tracking:** Allows users to interactively click directly on a live input canvas. The model processes each cursor selection as a positive foreground anchor and updates the colored mask overlays instantly.
+* **Bespolke Gradio Workspace:** Features an elegant, three-tab layout powered by the Gradio theme engine, integrating clean file-drop inputs, real-time tracking logs, and automated example sets.
+* **Supervision and Matplotlib Styling:** Implements structural contour draws and randomized colormap overlays over generated masks to ensure clear human validation on complex textures.
 
-https://github.com/user-attachments/assets/c6a29205-60ff-4522-b147-f76e2ee53d8b
+### **Repository Structure**
 
----
+```text
+├── examples/
+│   ├── goldencat.webp
+│   ├── player.jpg
+│   ├── sample_video.mp4
+│   ├── sample_video2.mp4
+│   └── taxi.jpg
+├── app.py
+├── LICENSE
+├── pre-requirements.txt
+├── pyproject.toml
+├── README.md
+└── requirements.txt
 
-### Key Features
-- **Text-Prompted Segmentation**: Segment objects based on descriptive text (e.g., "player in white", "black cat").
-- **Confidence Thresholding**: Adjustable slider to filter segmentation results by confidence score.
-- **Interactive Examples**: Built-in examples to quickly test the app.
-- **GPU Acceleration**: Optimized for CUDA if available; falls back to CPU.
-- **Gradio Interface**: Easy-to-use web UI with annotations overlayed on the original image.
-- **Custom Theme**: Steel-blue gradient design for a modern look.
-
-## Requirements
-
-To run this app locally, install the following dependencies. Note that SAM3 requires a recent version of Transformers from a specific commit for compatibility.
-
-```bash
-pip install gradio numpy torch peft spaces torchvision pillow opencv-python imageio[pyav] accelerate sentencepiece
-pip install git+https://github.com/huggingface/transformers.git@1fba72361e8e0e865d569f7cd15e5aa50b41ac9a
 ```
 
-### Hardware Recommendations
-- **GPU**: NVIDIA GPU with CUDA support (e.g., RTX series) for faster inference. The app auto-detects and uses CUDA if available.
-- **RAM**: At least 8GB (16GB+ recommended for large images).
-- **Storage**: ~5GB for model weights (downloaded on first run).
+---
 
-## Installation & Setup
+### **Installation and Requirements**
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/PRITHIVSAKTHIUR/SAM3-Image-Segmentation.git
-   cd SAM3-Image-Segmentation
-   ```
+To run SAM3 locally, configure a Python environment with the following dependencies. A compatible CUDA-enabled GPU is strongly recommended to handle real-time segmentation and video processing loops.
 
-2. **Install Dependencies**:
-   Run the pip commands from the [Requirements](#requirements) section above.
+**Standard PIP Installation**
 
-3. **Prepare Examples** (Optional):
-   Ensure the `examples/` folder contains sample images like `player.jpg`, `goldencat.webp`, and `taxi.jpg`. Download them if needed from public sources or use your own.
+1. Update pip:
 
-4. **Run Locally**:
-   ```bash
-   python app.py
-   ```
-   - The app will launch a local web server (typically at `http://127.0.0.1:7860`).
-   - Open the URL in your browser to interact with the interface.
+```bash
+pip install pip>=26.1.1
 
-### Deployment on Hugging Face Spaces
-- This app is optimized for HF Spaces with `@spaces.GPU` decorator.
-- Fork the repo on GitHub, create a new Space on [Hugging Face](https://huggingface.co/spaces), and link it to your repo.
-- The model will auto-download on first run (ensure your Space has GPU quota).
+```
 
-## Usage
+2. Install dependencies:
 
-1. **Upload an Image**: Drag-and-drop or select an image file (supports JPG, PNG, WEBP, etc.).
-2. **Enter a Text Prompt**: Describe the object to segment (e.g., "cat", "face", "car wheel").
-3. **Adjust Threshold**: Use the slider (default: 0.4) to set the minimum confidence for detections.
-4. **Click Segment**: The app processes the image and overlays colored masks on detected instances, labeled with scores.
-5. **Explore Examples**: Use the built-in examples for quick demos.
+```bash
+pip install -r requirements.txt
 
-### Input/Output Format
-- **Input**: PIL Image + Text Prompt + Float Threshold.
-- **Output**: Annotated image with segmentation masks (boolean arrays) and labels.
+```
 
-### Example Prompts
-- Sports: "player in white" on a soccer image.
-- Animals: "black cat" on a pet photo.
-- Vehicles: "blue taxi" on a street scene.
+#### **Running with `uv` (Recommended)**
 
-## Code Structure
+`uv` is an extremely fast Python package and project manager written in Rust, ensuring rapid environment setup and complete reproducibility.
 
-- **`app.py`**: Main Gradio app with model loading, segmentation function, and UI.
-- **`examples/`**: Sample images for testing.
-- **Custom Theme**: `SteelBlueTheme` class for stylized gradients and shadows.
+**Step 1 — Install `uv**`
 
-### Key Functions
-- `segment_image(input_image, text_prompt, threshold)`: Core inference using SAM3Processor and Sam3Model.
-- Model: Loaded from `"facebook/sam3"` on Hugging Face Hub.
+* **macOS / Linux:** `curl -LsSf [https://astral.sh/uv/install.sh](https://astral.sh/uv/install.sh) | sh`
+* **Windows:** `powershell -c "irm [https://astral.sh/uv/install.ps1](https://astral.sh/uv/install.ps1) | iex"`
 
-## Troubleshooting
+**Step 2 — Clone the repository**
 
-- **Model Loading Error**: Ensure Transformers is installed from the specified commit. Check internet access for downloading weights.
-- **CUDA Out of Memory**: Reduce image size or use a lower threshold. Run on CPU by setting `device="cpu"`.
-- **No Segments Detected**: Try a simpler prompt or lower the threshold. SAM3 works best on clear, high-contrast objects.
-- **Gradio Launch Issues**: Update Gradio (`pip install --upgrade gradio`) or check for port conflicts.
+```bash
+git clone https://github.com/PRITHIVSAKTHIUR/SAM3-Demo.git
+cd SAM3-Demo
 
-## Contributing
+```
 
-Contributions are welcome! Fork the repo, make changes, and submit a pull request.
+**Step 3 — Initialize the project and install dependencies**
 
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/PRITHIVSAKTHIUR/SAM3-Image-Segmentation.git)
+```bash
+uv sync
 
-## Acknowledgments
+```
 
-- [Meta AI SAM3](https://huggingface.co/facebook/sam3): The backbone model.
-- [Gradio](https://gradio.app/): For the intuitive UI framework.
-- [Hugging Face Transformers](https://huggingface.co/docs/transformers): For model handling.
+**Step 4 — Run the script**
+
+```bash
+uv run app.py
+
+```
+
+---
+
+### **Core Requirements List**
+
+The application depends on the following primary packages (defined in `requirements.txt`):
+
+```text
+transformers==5.9.0
+sentencepiece
+opencv-python
+imageio[pyav]
+torchvision
+matplotlib
+accelerate
+kernels
+pillow
+gradio==6.6.0
+spaces
+numpy
+torch==2.11.0
+peft
+
+```
+
+### **Usage**
+
+Once the application is running, open your browser to the local address provided in your terminal (typically `[http://127.0.0.1:7860/](http://127.0.0.1:7860/)`).
+
+1. **Image Segmentation Tab:** Drop an image, enter a target prompt (e.g., *"player in white"*), and click **Segment Image** to see an annotated map.
+2. **Video Segmentation Tab:** Drop an MP4 clip, configure maximum frames/timeout conditions, write a tracking prompt, and click **Segment Video** to run mask propagation.
+3. **Image Click Segmentation Tab:** Upload your image, and click any element on the preview canvas to see positive foreground anchors auto-generate segmentation layers instantly.
+
+### **License and Source**
+
+* **License:** [SAM License](https://github.com/PRITHIVSAKTHIUR/SAM3-Demo/blob/main/LICENSE)
+* **GitHub Repository:** [https://github.com/PRITHIVSAKTHIUR/SAM3-Demo.git](https://github.com/PRITHIVSAKTHIUR/SAM3-Demo.git)
