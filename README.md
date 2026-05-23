@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
     **[or]**
 
-`pip install uv`
+* `pip install uv`
 
 **Step 2 — Clone the repository**
 
