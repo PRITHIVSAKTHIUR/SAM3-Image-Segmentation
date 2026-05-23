@@ -6,6 +6,8 @@ SAM3: Segment Anything Model 3 is an experimental, multi-functional computer vis
 |---|---|---|
 | <img src="https://github.com/user-attachments/assets/5cdfe8da-41ff-46d1-af8c-9ceb1c932bf3" width="100%"> | <img src="https://github.com/user-attachments/assets/7412da70-6c12-4b70-a168-5380fb13b5bf" width="100%"> | <img src="https://github.com/user-attachments/assets/3ba0b2d4-30b1-47c2-bb54-d48c24c8e9eb" width="100%"> |
 
+https://github.com/user-attachments/assets/76b84265-97a3-4be3-b7db-4b2f104f8b8a
+
 ### **Key Features**
 
 * **Text-Conditional Image Segmentation:** Instantly isolates target objects inside static images by matching custom queries (e.g., *"cat"*, *"face"*, *"car wheel"*) against SAM3 instance maps, complete with custom threshold masking.
