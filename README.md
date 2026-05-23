@@ -29,6 +29,7 @@ SAM3: Segment Anything Model 3 is an experimental, multi-functional computer vis
 ├── pyproject.toml
 ├── README.md
 └── requirements.txt
+└── uv.lock
 
 ```
 
