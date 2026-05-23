@@ -1,4 +1,4 @@
-git+https://github.com/huggingface/transformers.git@c3fb1b1a6ca1102f62b139c83a088a97e5a55477
+transformers==5.9.0
 sentencepiece
 opencv-python
 imageio[pyav]
@@ -7,8 +7,8 @@ matplotlib
 accelerate
 kernels
 pillow
-gradio
+gradio==6.6.0
 spaces
 numpy
-torch
+torch==2.11.0
 peft
